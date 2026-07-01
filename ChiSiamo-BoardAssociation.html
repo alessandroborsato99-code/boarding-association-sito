@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Association — Chi siamo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0B0D12;--ink2:#12151C;--cool:#E8EFFF;--muted:#6E7788;--acc:#8FB4E0;--blue:#1F9BE8;--line-d:rgba(232,239,255,.14);--maxw:1280px}
+  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+  body{font-family:'Archivo',system-ui,sans-serif;background:var(--ink);color:var(--cool);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none} .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px}
+  .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  header{position:sticky;top:0;z-index:100;background:rgba(11,13,18,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px} .nav .lg{display:flex;align-items:center;gap:22px} .nav .lg img{height:38px} .nav .lg img.wm{height:22px}
+  .nav a.back{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.85} .nav a.back:hover{opacity:1;color:var(--acc)}
+  .hero{padding:80px 0 46px;border-bottom:1px solid var(--line-d)} .hero .lbl{color:var(--acc)}
+  .hero h1{font-weight:200;text-transform:uppercase;font-size:clamp(46px,9vw,120px);line-height:.92;letter-spacing:-.01em;margin:14px 0 20px;color:#fff}
+  .hero p{max-width:60ch;font-size:16.5px;color:rgba(232,239,255,.8)}
+  section.blk{padding:80px 0;border-bottom:1px solid var(--line-d)}
+  .blk.light{background:var(--cool);color:var(--ink);border-bottom-color:rgba(11,13,18,.12)}
+  .ey{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:22px}
+  .blk.light .ey{color:var(--blue)}
+  .manifesto-txt{font-weight:200;text-transform:none;font-size:clamp(24px,3.2vw,42px);line-height:1.28;letter-spacing:-.01em;max-width:20ch}
+  .statement{font-weight:200;font-size:clamp(22px,2.6vw,34px);line-height:1.35;max-width:40ch;color:var(--ink)}
+  .statement b{font-weight:600}
+  .disc{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .disc span{font-family:'Space Mono',monospace;font-size:14px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line-d);border-radius:100px;padding:11px 22px;color:#fff}
+  .lead{font-size:17px;color:rgba(232,239,255,.75);max-width:60ch;margin-top:26px}
+  h2.big{font-weight:200;text-transform:uppercase;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.01em;color:var(--ink)} h2.big b{font-weight:600}
+  .words{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+  .word{border:1px solid rgba(11,13,18,.12);border-radius:12px;padding:26px 24px;background:#fff}
+  .word .k{font-family:'Space Mono',monospace;font-size:22px;color:var(--ink);margin-bottom:8px;font-weight:700}
+  .word p{font-size:14.5px;color:#48566a}
+  .stores{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px}
+  .store{border:1px solid var(--line-d);border-radius:14px;overflow:hidden;background:var(--ink2)}
+  .store .ph{aspect-ratio:16/10;overflow:hidden} .store .ph img{width:100%;height:100%;object-fit:cover;filter:contrast(1.03)}
+  .store .b{padding:22px 24px 26px}
+  .store h3{font-weight:200;text-transform:uppercase;font-size:26px;color:#fff;margin-bottom:8px}
+  .store p{font-size:15px;color:rgba(232,239,255,.8);margin-bottom:3px}
+  .store .go{margin-top:14px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+  .cta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+  .cta h2{font-weight:200;text-transform:uppercase;font-size:clamp(24px,3vw,42px);color:#fff}
+  .btn{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:14px 26px;border-radius:3px;background:var(--cool);color:var(--ink);transition:.2s} .btn:hover{background:#fff;transform:translateY(-2px)}
+  /* footer */
+  footer{background:var(--cool);color:var(--ink);padding:80px 0 34px;border-top:1px solid rgba(11,13,18,.1)}
+  .brands{display:flex;align-items:center;gap:50px;flex-wrap:wrap;padding-bottom:40px;margin-bottom:46px;border-bottom:1px solid rgba(11,13,18,.12)}
+  .brands img{height:46px;width:auto;display:block} .brands img.crest{height:62px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;padding-bottom:52px;border-bottom:1px solid rgba(11,13,18,.12)}
+  .foot-top h2{font-weight:200;text-transform:uppercase;font-size:clamp(34px,4.6vw,74px);line-height:.9;color:var(--ink)} .foot-top h2 b{font-weight:600}
+  .fcol .l{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6474;margin-bottom:14px}
+  .fcol p{color:#2B3745;font-size:15px;margin-bottom:5px} .fcol a{border-bottom:1px solid transparent;transition:.2s} .fcol a:hover{border-color:var(--ink)}
+  .social{display:flex;gap:18px;margin-top:12px} .social a{color:var(--ink);transition:.2s;display:flex} .social a:hover{color:var(--acc)} .social svg{width:22px;height:22px}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:#5A6474;flex-wrap:wrap;gap:8px}
+  .rev{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)} .rev.in{opacity:1;transform:none}
+  @media(max-width:860px){.words,.stores,.foot-top{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><div class="wrap nav">
+  <div class="lg"><a href="Home-BoardAssociation.html"><img src="assets/logo-white.png" alt="Board Association"></a><a href="https://www.detour.it/it" target="_blank" rel="noopener"><img class="wm" src="assets/detour_logo.webp" alt="Detour"></a><a href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener"><img class="wm" src="assets/slide_logo.webp" alt="Slide"></a></div>
+  <a class="back" href="Home-BoardAssociation.html">← Home</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="lbl">Chi siamo</div>
+  <h1>Chi siamo</h1>
+  <p>Board Association è la community e la scuola di riferimento per lo snowboard a Verona, dal 1988. Non un maestro qualsiasi, non una scuola anonima: un gruppo radicato che vive la tavola in ogni sua forma, tutto l'anno.</p>
+</div></section>
+
+<section class="blk light"><div class="wrap">
+  <div class="ey rev">(01) Il manifesto</div>
+  <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:44px;align-items:start" class="rev d1">
+    <div class="manifesto-txt">Inarrestabile passione, stagione dopo stagione.</div>
+    <p class="statement">All'insegna di <b>sport e vita all'aperto</b>. Alla ricerca di equilibri, curve, accelerazioni, acrobazie o più semplicemente modi di muoversi, la conquista delle proprie soddisfazioni scorre con energia <b>tra montagne e laghi, fiumi e mari</b>. Lasciarsi conquistare da filosofie e concretezze sarà solo una questione di divertimento, nel più naturale degli istinti.</p>
+  </div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+  <div class="ey rev">(02) Le nostre tavole</div>
+  <h2 class="big rev d1" style="color:#fff">Una tavola, in ogni stagione.</h2>
+  <div class="disc rev d1">
+    <span>Snowboard</span><span>Sci</span><span>Skate</span><span>Surf</span><span>Wake</span>
+  </div>
+  <p class="lead rev d2">Dalla neve all'asfalto, dall'onda al lago: sport diversi, una sola passione per la tavola. Snow, surf, skate e wake tour tutto l'anno, sempre insieme.</p>
+</div></section>
+
+<section class="blk light"><div class="wrap">
+  <div class="ey rev">(03) Dal 1988</div>
+  <h2 class="big rev d1">Il riferimento dello snowboard a <b>Verona.</b></h2>
+  <p class="statement rev d1" style="margin-top:20px;max-width:64ch">Storia, competenza e territorio. Chi entra non compra una lezione: entra in una community che condivide la stessa passione, stagione dopo stagione. Un pubblico ampio, unito da una cosa sola.</p>
+  <div class="words rev d2">
+    <div class="word"><div class="k">Community</div><p>Persone prima che clienti. Ci si trova, si esce insieme, si torna.</p></div>
+    <div class="word"><div class="k">Competenza</div><p>Maestri e guide certificati, professionisti da quasi 25 anni.</p></div>
+    <div class="word"><div class="k">Territorio</div><p>Radicati a Verona, di casa sull'arco alpino e non solo.</p></div>
+  </div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+  <div class="ey rev">(04) I negozi</div>
+  <h2 class="big rev d1" style="color:#fff">Due store a Verona.</h2>
+  <div class="stores rev d1">
+    <a class="store" href="https://www.detour.it/it" target="_blank" rel="noopener">
+      <div class="ph"><img src="assets/store-detour.jpg" alt="Detour"></div>
+      <div class="b"><h3>Detour</h3><p>Via Goffredo Mameli, 5/a – 5/d · 37126 Verona</p><p>+39 045 8349981</p><div class="go">Vai al sito →</div></div>
+    </a>
+    <a class="store" href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener">
+      <div class="ph"><img src="assets/store-slide.jpg" alt="Slide"></div>
+      <div class="b"><h3>Slide</h3><p>Via Porta S. Zeno, 19 · 37123 Verona</p><p>+39 045 9299971</p><div class="go">Vai al sito →</div></div>
+    </a>
+  </div>
+</div></section>
+
+<section class="blk light"><div class="wrap">
+  <div class="cta rev"><h2 style="color:var(--ink)">Vieni a conoscerci sulla neve.</h2><a class="btn" style="background:var(--ink);color:var(--cool)" href="Home-BoardAssociation.html#contatti">Contattaci →</a></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="brands">
+      <a href="https://www.detour.it/it" target="_blank" rel="noopener"><img src="assets/detour-black.png" alt="Detour"></a>
+      <a href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener"><img src="assets/slide-black.png" alt="Slide"></a>
+      <img class="crest" src="assets/board-noverona-black.png" alt="Board Association">
+    </div>
+    <div class="foot-top">
+      <div><h2>Inarrestabile passione, <b>stagione dopo stagione.</b></h2></div>
+      <div class="fcol">
+        <div class="l">Detour · Verona</div>
+        <p>Via Goffredo Mameli, 5/a – 5/d</p><p>37126 Verona</p>
+        <p style="margin-top:12px">Lun–Sab · 09:30–12:30 / 15:30–19:30</p><p>Dom · 10:30–12:30 / 15:30–19:00</p>
+        <p style="margin-top:12px"><a href="tel:+390458349981">+39 045 8349981</a></p>
+        <div class="l" style="margin-top:26px">Tessere</div><p>FISI + Club € 60 · Club € 25</p>
+      </div>
+      <div class="fcol">
+        <div class="l">Slide · Verona</div>
+        <p>Via Porta S. Zeno, 19</p><p>37123 Verona</p>
+        <p style="margin-top:12px">Lun–Sab · 10:00–19:00</p><p>Dom · 10:30–12:30 / 16:00–19:00</p>
+        <p style="margin-top:12px"><a href="tel:+390459299971">+39 045 9299971</a></p>
+        <div class="l" style="margin-top:26px">Seguici</div>
+        <div class="social">
+          <a href="https://www.facebook.com/detourslide" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.29-.04-1.28-.13-2.43-.13-2.4 0-4.05 1.47-4.05 4.16v2.32H7.8V13h2.72v8h2.98z"/></svg></a>
+          <a href="https://www.instagram.com/detour_slide/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.9" cy="7.1" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>BOARD ASSOCIATION — EST. 1988 · VERONA</span><span>© 2026</span></div>
+  </div>
+</footer>
+<script>
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+ document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+ function rp(){document.querySelectorAll('.rev:not(.in)').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight*0.95){el.classList.add('in');io.unobserve(el)}})}
+ addEventListener('load',rp);addEventListener('scroll',rp,{passive:true});rp();
+</script>
+</body></html>

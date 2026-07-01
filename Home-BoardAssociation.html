@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Association — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0D12;
+    --ink-2:#12151C;
+    --cool:#E8EFFF;
+    --cool-d:#C7D3E6;
+    --muted:#6E7788;
+    --acc:#8FB4E0;
+    --line-d:rgba(232,239,255,.14);
+    --line-l:rgba(11,13,18,.14);
+    --maxw:1400px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Archivo',system-ui,sans-serif;background:var(--ink);color:var(--cool);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px}
+  .disp{font-weight:200;text-transform:uppercase;line-height:.94;letter-spacing:-.005em}
+  .mono{font-family:'Space Mono',monospace}
+  .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .grade{filter:contrast(1.05) saturate(1.03) brightness(.97)}
+  .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* ============ HEADER ============ */
+  header{position:fixed;top:0;left:0;right:0;z-index:200;transition:transform .35s ease,opacity .35s ease}
+  header.hide{transform:translateY(-110%);opacity:0;pointer-events:none}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .nav .lg{display:flex;align-items:center;gap:26px}
+  .nav .lg img{height:44px;width:auto;display:block}
+  .nav .lg img.wm{height:24px}
+  .nav .lg .sep{width:1px;height:26px;background:var(--line-d)}
+  .nav .lg .w{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;font-weight:700}
+  nav.links{display:flex;gap:26px}
+  nav.links a{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;opacity:.85;transition:.2s}
+  nav.links a:hover{opacity:1}
+  .nav .menu{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;display:flex;gap:10px;align-items:center}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;height:100vh;min-height:680px;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto}
+  .hero-top{padding-top:98px;position:relative;z-index:6;text-align:center}
+  .hero-top h1{font-weight:200;text-transform:uppercase;font-size:clamp(30px,4.6vw,66px);line-height:1.0;letter-spacing:-.01em;color:#fff;text-shadow:0 2px 34px rgba(11,13,18,.45);white-space:nowrap}
+  .hero-top h1 .b{font-weight:500}
+  .hero-menu{align-self:center;position:relative;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .hero-menu .grp{display:flex;gap:36px}
+  .hero-menu a{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:.92;text-shadow:0 1px 12px rgba(11,13,18,.6);transition:.2s}
+  .hero-menu a:hover{opacity:1;color:var(--acc)}
+  .hero-menu .crest{height:118px;width:auto;filter:drop-shadow(0 8px 22px rgba(0,0,0,.55))}
+  .hero-bottom{position:relative;z-index:6;display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:44px;gap:20px;flex-wrap:wrap}
+  .hero-bottom .stand{max-width:36ch;font-size:15px;color:rgba(232,239,255,.9);text-shadow:0 1px 12px rgba(11,13,18,.55)}
+  .hero-bottom .actions{display:flex;gap:12px}
+  .hero .bg{position:absolute;inset:0;background:url("assets/fp/hero.jpg") center/cover no-repeat}
+  .hero .bg::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,18,.66) 0%,rgba(11,13,18,.3) 32%,rgba(11,13,18,.42) 62%,rgba(11,13,18,.9) 100%)}
+  .btn{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:13px 22px;border-radius:2px;transition:.2s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent;cursor:pointer}
+  .btn.solid{background:var(--cool);color:var(--ink)}
+  .btn.solid:hover{background:#fff}
+  .btn.line{border-color:var(--line-d);color:var(--cool)}
+  .btn.line:hover{border-color:var(--cool)}
+  .btn.dark{background:var(--ink);color:var(--cool)}
+  .btn.dark:hover{background:var(--ink-2)}
+
+  /* ============ MARQUEE ============ */
+  .strip{border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d);overflow:hidden;background:var(--ink)}
+  .strip .t{display:flex;white-space:nowrap;animation:marq 34s linear infinite}
+  .strip .t span{font-weight:200;text-transform:uppercase;font-size:22px;letter-spacing:.02em;padding:15px 30px;color:var(--cool);opacity:.85}
+  .strip .t span b{font-weight:600}
+  .strip .t span::after{content:"·";margin-left:60px;color:var(--muted)}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* ============ MANIFESTO (light) ============ */
+  .light{background:var(--cool);color:var(--ink)}
+  .manifesto{padding:120px 0}
+  .manifesto .grid{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+  .manifesto .mfoto{margin-top:22px;border-radius:8px;overflow:hidden;aspect-ratio:3/4;max-width:380px}
+  .manifesto .mfoto img{width:100%;height:100%;object-fit:cover;display:block}
+  .manifesto .mfoto .cap{position:absolute;left:12px;bottom:10px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .manifesto .mwrap-img{position:relative}
+  .manifesto .lbl{color:#5A6474}
+  .manifesto h2{font-weight:200;text-transform:uppercase;font-size:clamp(30px,4.2vw,58px);line-height:1.02;letter-spacing:-.01em}
+  .manifesto h2 b{font-weight:600}
+  .manifesto .body{max-width:52ch;font-size:16px;color:#33404F}
+  .manifesto .body p{margin-bottom:14px}
+
+  /* ============ FEATURE ROWS ============ */
+  .feat{background:var(--ink);padding:0 0 40px}
+  .row{display:grid;grid-template-columns:1fr 1fr;min-height:74vh;align-items:stretch;gap:0;border-bottom:1px solid var(--line-d)}
+  .row .media{position:relative;overflow:hidden}
+  .row .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .row:hover .media img{transform:scale(1.05)}
+  .row .txt{display:flex;flex-direction:column;justify-content:center;padding:64px}
+  .row.rev .media{order:2}
+  .row.photoL .media{order:0}
+  .row.photoL .txt{order:1}
+  .row .num{color:var(--acc)}
+  .row h3{font-weight:200;text-transform:uppercase;font-size:clamp(40px,5.4vw,84px);line-height:.92;margin:14px 0 20px;color:#fff}
+  .row p{max-width:40ch;font-size:16px;color:rgba(232,239,255,.72)}
+  .row .price{margin-top:26px;font-family:'Space Mono',monospace;font-size:13px;color:var(--cool);border-top:1px solid var(--line-d);padding-top:18px}
+  .row .price b{color:var(--acc);font-weight:700}
+  .row .link{margin-top:22px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;gap:10px;align-items:center}
+  .row .link span{transition:.2s}
+  .row:hover .link span{transform:translateX(6px)}
+
+  /* ============ GALLERY ============ */
+  .gallery{padding:110px 0}
+  .gallery .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;gap:20px}
+  .gallery h2{font-weight:200;text-transform:uppercase;font-size:clamp(34px,5vw,72px);color:var(--ink);line-height:.94}
+  .gallery h2 b{font-weight:600}
+  .gmosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:180px;gap:10px}
+  .gmosaic figure{position:relative;overflow:hidden;border-radius:3px}
+  .gmosaic figure img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .gmosaic figure:hover img{transform:scale(1.06)}
+  .gmosaic figure figcaption{position:absolute;left:10px;bottom:8px;z-index:2;color:#fff}
+  .gmosaic .g1{grid-column:span 3;grid-row:span 2}
+  .gmosaic .g2{grid-column:span 3;grid-row:span 1}
+  .gmosaic .g3{grid-column:span 2;grid-row:span 1}
+  .gmosaic .g4{grid-column:span 1;grid-row:span 1}
+  .gmosaic figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,13,18,.6));pointer-events:none}
+
+  /* ============ BLOG ============ */
+  .blog{padding:110px 0}
+  .blog .head{margin-bottom:26px}
+  .blog h2{font-weight:200;text-transform:uppercase;font-size:clamp(34px,5vw,72px);color:var(--ink);line-height:.94}
+  .blog h2 b{font-weight:600}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:42px}
+  .filters button{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:100px;border:1px solid var(--line-l);background:transparent;color:var(--ink);cursor:pointer;transition:.2s}
+  .filters button:hover{border-color:var(--ink)}
+  .filters button.on{background:var(--ink);color:var(--cool);border-color:var(--ink)}
+  .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .post{display:flex;flex-direction:column;cursor:pointer}
+  .post .thumb{position:relative;aspect-ratio:3/2;border-radius:10px;overflow:hidden;margin-bottom:16px;background:#dfe6ef}
+  .post .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .post:hover .thumb img{transform:scale(1.05)}
+  .post .cat{position:absolute;top:12px;left:12px;z-index:2;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--cool);padding:5px 11px;border-radius:100px}
+  .post .pmeta{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+  .post h3{font-family:'Archivo',sans-serif;font-weight:600;text-transform:none;letter-spacing:-.01em;font-size:21px;line-height:1.18;color:var(--ink);margin-bottom:9px}
+  .post p{font-size:14.5px;color:#48566a;margin-bottom:13px;line-height:1.5}
+  .post .rd{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);align-self:flex-start;padding-bottom:2px;transition:.2s}
+  .post:hover .rd{color:var(--acc);border-color:var(--acc)}
+  .post.hidden{display:none}
+  @media(max-width:900px){.bgrid{grid-template-columns:1fr}}
+
+  /* ============ CREW (list) ============ */
+  .crew{padding:110px 0;border-top:1px solid var(--line-d)}
+  .crew .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;gap:20px}
+  .crew h2{font-weight:200;text-transform:uppercase;font-size:clamp(40px,6vw,92px);color:#fff}
+  .crew h2 b{font-weight:600}
+  .crew .meta{text-align:right}
+  .clist{border-top:1px solid var(--line-d)}
+  .crow{display:grid;grid-template-columns:44px 1fr auto;gap:20px;align-items:start;padding:22px 6px;border-bottom:1px solid var(--line-d);transition:.25s;cursor:default}
+  .crow:hover{padding-left:22px;background:linear-gradient(90deg,rgba(143,180,224,.06),transparent)}
+  .crow .i{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);padding-top:6px}
+  .crow .nm{font-weight:200;text-transform:uppercase;font-size:clamp(24px,3.4vw,44px);color:#fff;transition:.25s}
+  .crow:hover .nm{font-weight:400;color:var(--acc)}
+  .crow .bio{max-height:0;overflow:hidden;opacity:0;font-size:14.5px;color:rgba(232,239,255,.72);max-width:56ch;transition:max-height .45s ease,opacity .35s ease,margin-top .35s ease}
+  .crow:hover .bio{max-height:130px;opacity:1;margin-top:10px}
+  .crow .rl{padding-top:6px}
+  .crow .rl{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right}
+  .crew .foot{margin-top:36px}
+
+  /* ============ PRIMA ESPERIENZA ============ */
+  .firstx{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden}
+  .firstx .bg{position:absolute;inset:0;background:url("assets/fp/prova.jpg") center/cover no-repeat}
+  .firstx .bg::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,18,.5),rgba(11,13,18,.35) 40%,rgba(11,13,18,.9))}
+  .firstx .wrap{position:relative;z-index:5;width:100%;padding-bottom:64px;display:grid;grid-template-columns:1.4fr auto;gap:40px;align-items:end}
+  .firstx h2{font-weight:200;text-transform:uppercase;font-size:clamp(44px,7vw,120px);line-height:.9;color:#fff;margin:16px 0 20px}
+  .firstx h2 b{font-weight:500}
+  .firstx p{max-width:44ch;font-size:16px;color:rgba(232,239,255,.85)}
+  .firstx .tag{text-align:right}
+  .firstx .tag .price{font-weight:200;font-size:clamp(80px,13vw,180px);line-height:.8;color:#fff}
+  .firstx .actions{margin-top:26px}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--cool);color:var(--ink);padding:90px 0 34px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;padding-bottom:52px;border-bottom:1px solid var(--line-l)}
+  .foot-top h2{font-weight:200;text-transform:uppercase;font-size:clamp(40px,6vw,96px);line-height:.9}
+  .foot-top h2 b{font-weight:600}
+  .foot-top .crest{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .foot-top .crest img{height:72px}
+  .brands{display:flex;align-items:center;gap:50px;flex-wrap:wrap;padding-bottom:40px;margin-bottom:46px;border-bottom:1px solid var(--line-l)}
+  .brands img{height:46px;width:auto;display:block}
+  .brands img.crest{height:62px}
+  .fcol .l{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6474;margin-bottom:14px}
+  .fcol p{color:#2B3745;font-size:15px;margin-bottom:5px}
+  .fcol a{border-bottom:1px solid transparent;transition:.2s}
+  .fcol a:hover{border-color:var(--ink)}
+  .social{display:flex;gap:18px;margin-top:12px}
+  .social a{color:var(--ink);transition:.2s;display:flex}
+  .social a:hover{color:var(--acc)}
+  .social svg{width:22px;height:22px}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:#5A6474;flex-wrap:wrap;gap:8px}
+
+  /* reveal */
+  .rev{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .rev.in{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+  .note{position:fixed;left:12px;bottom:12px;z-index:9998;background:var(--cool);color:var(--ink);font-family:'Space Mono',monospace;font-size:10px;padding:6px 11px;border-radius:2px}
+
+  @media(max-width:920px){
+    nav.links,.hero .card{display:none}
+    .manifesto .grid,.row,.firstx .wrap,.foot-top{grid-template-columns:1fr}
+    .row{min-height:0}
+    .row .media{aspect-ratio:4/3}
+    .row.rev .media{order:0}
+    .row .txt{padding:40px 22px}
+    .gmosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+    .gmosaic .g1,.gmosaic .g2,.gmosaic .g3,.gmosaic .g4{grid-column:span 2;grid-row:span 1}
+    .firstx .tag{text-align:left}
+    .hero-top{padding-top:86px}
+    .hero-top h1{white-space:normal;font-size:clamp(32px,8.4vw,60px);line-height:1.05}
+    .hero-menu{flex-wrap:wrap;justify-content:center;gap:12px 0}
+    .hero-menu .grp{gap:20px;flex-wrap:wrap;justify-content:center}
+    .hero-bottom{flex-direction:column;align-items:flex-start;gap:22px;padding-bottom:36px}
+    .hero-bottom .actions{flex-wrap:wrap;width:100%}
+    .hero-bottom .actions .btn{flex:1 1 auto;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap nav">
+    <div class="lg"><img src="assets/logo-white.png" alt="Board Association"><a href="https://www.detour.it/it" target="_blank" rel="noopener"><img class="wm" src="assets/detour_logo.webp" alt="Detour"></a><a href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener"><img class="wm" src="assets/slide_logo.webp" alt="Slide"></a></div>
+    <div class="menu">{ Dal 1988 }</div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="bg grade grain"></div>
+  <div class="hero-top wrap">
+    <h1><span class="thin">Non una</span> <span class="b">scuola.</span><br><span class="thin">Una</span> <span class="b">community.</span></h1>
+  </div>
+  <nav class="hero-menu wrap">
+    <div class="grp"><a href="#chi">Chi siamo</a><a href="#corsi">Corsi</a><a href="#noleggio">Noleggio</a></div>
+    <div class="grp"><a href="#uscite">Uscite</a><a href="#crew">Team</a><a href="#contatti">Contatti</a></div>
+  </nav>
+  <div class="hero-bottom wrap">
+    <p class="stand">Le persone e le tavole giuste, sulla stessa neve. Dal 1988, il riferimento dello snowboard a Verona.</p>
+    <div class="actions">
+      <a href="#prova" class="btn solid">Prova la Prima Esperienza →</a>
+      <a href="#corsi" class="btn line">Cosa facciamo</a>
+    </div>
+  </div>
+</section>
+
+<!-- marquee -->
+<div class="strip">
+  <div class="t">
+    <span class="disp">Snowboard</span><span class="disp"><b>Sci</b></span><span class="disp">Uscite</span><span class="disp"><b>Skate</b></span><span class="disp">Surf</span><span class="disp"><b>Wake</b></span><span class="disp">Community</span>
+    <span class="disp">Snowboard</span><span class="disp"><b>Sci</b></span><span class="disp">Uscite</span><span class="disp"><b>Skate</b></span><span class="disp">Surf</span><span class="disp"><b>Wake</b></span><span class="disp">Community</span>
+  </div>
+</div>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="light manifesto" id="chi">
+  <div class="wrap grid">
+    <div class="rev">
+      <div class="lbl">(01) Chi siamo</div>
+      <div class="mfoto mwrap-img grade"><img src="assets/store-detour.jpg" alt="Il negozio a Verona"></div>
+    </div>
+    <div class="rev d1">
+      <h2>Il riferimento dello snowboard a <b>Verona, dal 1988.</b> Non un maestro qualsiasi, non una scuola anonima: un gruppo radicato che vive la neve insieme.</h2>
+      <div class="body" style="margin-top:28px">
+        <p>Curve, accelerazioni, trick e giornate all'aperto tra montagne, laghi e mare. Chi entra non compra una lezione: entra in una community.</p>
+        <p>Un pubblico ampio, unito da una cosa sola. Ci si trova, si esce insieme, si torna. Stagione dopo stagione.</p>
+      </div>
+      <a href="ChiSiamo-BoardAssociation.html" style="display:inline-block;margin-top:26px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px">La nostra storia →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE ROWS ============ -->
+<section class="feat" id="corsi">
+  <div class="row rev">
+    <div class="media grade"><img src="assets/fp/corsi.jpg" alt="Corsi"></div>
+    <div class="txt">
+      <div class="lbl num">01 / Imparare</div>
+      <h3>Corsi &amp;<br>Lezioni</h3>
+      <p>Privata, in coppia o in gruppo. Snowboard e sci, per ogni livello, con maestri certificati che ti seguono davvero.</p>
+      <div class="price">DA <b>€ 56/H</b> · PACCHETTI DA € 450</div>
+      <a href="Corsi-BoardAssociation.html" class="link">Scopri i corsi<span>→</span></a>
+    </div>
+  </div>
+  <div class="row rev photoL" id="noleggio">
+    <div class="txt">
+      <div class="lbl num">02 / Attrezzarsi</div>
+      <h3>Noleggio</h3>
+      <p>Soft, Hard, Sci, Splitboard, Stepon, Ciaspole. Dal singolo giorno alla stagione intera. Prenoti e ritiri in negozio.</p>
+      <div class="price">DA <b>€ 15/GIORNO</b> · SCONTO 15% UNDER 14</div>
+      <a href="Noleggio-BoardAssociation.html" class="link">Vedi il listino<span>→</span></a>
+    </div>
+    <div class="media grade"><img src="assets/fp/noleggio.jpg" alt="Noleggio"></div>
+  </div>
+  <div class="row rev" id="uscite">
+    <div class="media grade"><img src="assets/detour/skate-category.webp" alt="Uscite"></div>
+    <div class="txt">
+      <div class="lbl num">03 / Vivere</div>
+      <h3>Uscite &amp;<br>Tour</h3>
+      <p>Snow, surf, skate e wake tour nelle migliori location dell'arco alpino, tutto l'anno. La community che si muove insieme.</p>
+      <div class="price">CALENDARIO STAGIONALE · <b>TUTTO L'ANNO</b></div>
+      <a href="Magazine-BoardAssociation.html" class="link">Prossime uscite <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="blog light" id="magazine">
+  <div class="wrap">
+    <div class="head">
+      <div class="lbl rev">(02) Magazine</div>
+      <h2 class="rev d1"><b>Magazine</b></h2>
+    </div>
+    <div class="filters rev d1">
+      <button class="on" data-f="all">Tutti</button>
+      <button data-f="corsi">Corsi</button>
+      <button data-f="eventi">Eventi</button>
+      <button data-f="news">News</button>
+    </div>
+    <div class="bgrid">
+      <article class="post rev" data-cat="eventi">
+        <div class="thumb grade"><span class="cat">Eventi</span><img src="assets/ba/copertina.jpg" alt=""></div>
+        <div class="pmeta">14 Feb 2026 · 4 min</div>
+        <h3>Uscita in Vialattea: neve e panorami</h3>
+        <p>Giornata di gruppo tra piste e fuoripista, con vista sull'arco alpino. Il racconto e le foto.</p>
+        <span class="rd">Leggi →</span>
+      </article>
+      <article class="post rev d1" data-cat="corsi">
+        <div class="thumb grade"><span class="cat">Corsi</span><img src="assets/fp/corsi.jpg" alt=""></div>
+        <div class="pmeta">02 Feb 2026 · 3 min</div>
+        <h3>Corso freestyle: dai primi salti al park</h3>
+        <p>Come funziona il percorso freestyle e cosa si impara lezione dopo lezione, con i nostri maestri.</p>
+        <span class="rd">Leggi →</span>
+      </article>
+      <article class="post rev d2" data-cat="eventi">
+        <div class="thumb grade"><span class="cat">Eventi</span><img src="assets/ba/corsi-1.jpg" alt=""></div>
+        <div class="pmeta">18 Gen 2026 · 2 min</div>
+        <h3>Demo Day: prova le tavole 26/27</h3>
+        <p>Una giornata sulla neve per testare i nuovi modelli insieme ai brand. Come partecipare.</p>
+        <span class="rd">Leggi →</span>
+      </article>
+      <article class="post rev" data-cat="news">
+        <div class="thumb grade"><span class="cat">News</span><img src="assets/fp/noleggio.jpg" alt=""></div>
+        <div class="pmeta">10 Dic 2025 · 2 min</div>
+        <h3>Rinnovato il parco noleggio</h3>
+        <p>Nuove tavole, scarponi e attacchi in negozio. Tutte le novità per la stagione che parte.</p>
+        <span class="rd">Leggi →</span>
+      </article>
+      <article class="post rev d1" data-cat="eventi">
+        <div class="thumb grade"><span class="cat">Eventi</span><img src="assets/ba/front-uscite.jpg" alt=""></div>
+        <div class="pmeta">21 Gen 2026 · 3 min</div>
+        <h3>Weekend con la crew</h3>
+        <p>Due giorni tra neve, risate e serate. Perché un'uscita con Board Association è più di una sciata.</p>
+        <span class="rd">Leggi →</span>
+      </article>
+      <article class="post rev d2" data-cat="news">
+        <div class="thumb grade"><span class="cat">News</span><img src="assets/fp/sunset.jpg" alt=""></div>
+        <div class="pmeta">28 Nov 2025 · 2 min</div>
+        <h3>Apertura stagione: le condizioni</h3>
+        <p>Prime nevicate e comprensori aperti. Il punto sulla neve e i consigli per i primi giorni.</p>
+        <span class="rd">Leggi →</span>
+      </article>
+    </div>
+    <div style="margin-top:44px"><a href="Magazine-BoardAssociation.html" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px">Tutti gli articoli →</a></div>
+  </div>
+</section>
+
+<!-- ============ CREW ============ -->
+<section class="crew" id="crew">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="lbl rev">(03) I volti</div><h2 class="rev d1">La <b>crew</b></h2></div>
+      <div class="meta lbl rev d1">8 istruttori &amp; guide<br>Maestri certificati FISI</div>
+    </div>
+    <div class="clist">
+      <div class="crow rev"><div class="i">01</div><div class="who"><div class="nm">Luca L. Molon</div><div class="bio">Appassionato delle superfici di scivolamento e dell'evoluzione della tavola, unisce competenza tecnica ed esperienza didattica tra freestyle, freeride e velocità.</div></div><div class="rl">Maestro snowboard · telemark</div></div>
+      <div class="crow rev"><div class="i">02</div><div class="who"><div class="nm">Pietro Paternoster</div><div class="bio">Professionista di lunga data, incarna semplicità ed energia. Segue sia i principianti sia gli atleti più avanzati, in cerca di velocità e trick evoluti.</div></div><div class="rl">Maestro snowboard · telemark</div></div>
+      <div class="crow rev"><div class="i">03</div><div class="who"><div class="nm">Paolo Capelletti</div><div class="bio">Atleta polivalente con anima freestyle. Insegna in modo immaginativo ai più giovani, privilegiando la pratica al tecnicismo.</div></div><div class="rl">Maestro snowboard · freestyle</div></div>
+      <div class="crow rev"><div class="i">04</div><div class="who"><div class="nm">Francesco Ugolini</div><div class="bio">Tra i pionieri dello snowboard italiano e riferimento agonistico. Istruttore del Collegio del Trentino, porta la sua esperienza dallo skateboard a più discipline.</div></div><div class="rl">Maestro · pioniere snowboard</div></div>
+      <div class="crow rev"><div class="i">05</div><div class="who"><div class="nm">Nicola Bonafini</div><div class="bio">Ex atleta di squadra agonistica, appassionato di montagna e cultura del territorio. Assistente maestro di snowboard per la regione Alto Adige.</div></div><div class="rl">Assistente maestro snowboard</div></div>
+      <div class="crow rev"><div class="i">06</div><div class="who"><div class="nm">Andrea Spezie</div><div class="bio">Compagno di giornate rilassate alla scoperta dei comprensori, senza pressioni tecniche, per condividere momenti in paesaggi spettacolari.</div></div><div class="rl">Guida snowboard</div></div>
+    </div>
+    <div class="foot"><a href="Team-BoardAssociation.html" class="btn line">Tutta la crew →</a></div>
+  </div>
+</section>
+
+<!-- ============ PRIMA ESPERIENZA ============ -->
+<section class="firstx" id="prova">
+  <div class="bg grade grain"></div>
+  <div class="wrap">
+    <div>
+      <div class="lbl" style="color:var(--cool);opacity:.9">Non sei mai salito su una tavola?</div>
+      <h2>La Prima<br><b>Esperienza</b></h2>
+      <p>Noleggio dell'attrezzatura più 2 ore di lezione. Il modo più semplice per provare: zero pensieri, zero attrezzatura tua.</p>
+      <div class="actions"><a href="#contatti" class="btn solid">Prenota la prova →</a></div>
+    </div>
+    <div class="tag">
+      <div class="lbl" style="color:var(--cool);opacity:.8">Tutto incluso</div>
+      <div class="price">€50</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contatti">
+  <div class="wrap">
+    <div class="brands">
+      <a href="https://www.detour.it/it" target="_blank" rel="noopener"><img src="assets/detour-black.png" alt="Detour"></a>
+      <a href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener"><img src="assets/slide-black.png" alt="Slide"></a>
+      <img class="crest" src="assets/board-noverona-black.png" alt="Board Association">
+    </div>
+    <div class="foot-top">
+      <div>
+        <h2>Inarrestabile passione, <b>stagione dopo stagione.</b></h2>
+      </div>
+      <div class="fcol">
+        <div class="l">Detour · Verona</div>
+        <p>Via Goffredo Mameli, 5/a – 5/d</p>
+        <p>37126 Verona</p>
+        <p style="margin-top:12px">Lun–Sab · 09:30–12:30 / 15:30–19:30</p>
+        <p>Dom · 10:30–12:30 / 15:30–19:00</p>
+        <p style="margin-top:12px"><a href="tel:+390458349981">+39 045 8349981</a></p>
+        <div class="l" style="margin-top:26px">Tessere</div>
+        <p>FISI + Club € 60 · Club € 25</p>
+      </div>
+      <div class="fcol">
+        <div class="l">Slide · Verona</div>
+        <p>Via Porta S. Zeno, 19</p>
+        <p>37123 Verona</p>
+        <p style="margin-top:12px">Lun–Sab · 10:00–19:00</p>
+        <p>Dom · 10:30–12:30 / 16:00–19:00</p>
+        <p style="margin-top:12px"><a href="tel:+390459299971">+39 045 9299971</a></p>
+        <div class="l" style="margin-top:26px">Seguici</div>
+        <div class="social">
+          <a href="https://www.facebook.com/detourslide" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.29-.04-1.28-.13-2.43-.13-2.4 0-4.05 1.47-4.05 4.16v2.32H7.8V13h2.72v8h2.98z"/></svg></a>
+          <a href="https://www.instagram.com/detour_slide/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.9" cy="7.1" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>BOARD ASSOCIATION — EST. 1988 · VERONA</span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+  // fallback: reveal anything already in or above the viewport (reload while scrolled / jump to anchor)
+  function revealPassed(){document.querySelectorAll('.rev:not(.in)').forEach(el=>{if(el.getBoundingClientRect().top < innerHeight*0.95){el.classList.add('in');io.unobserve(el);}});}
+  addEventListener('load',revealPassed); addEventListener('scroll',revealPassed,{passive:true}); revealPassed();
+  const hdr=document.querySelector('header');
+  addEventListener('scroll',()=>hdr.classList.toggle('hide',scrollY>90),{passive:true});
+  document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const f=b.dataset.f;
+    document.querySelectorAll('.post').forEach(p=>p.classList.toggle('hidden', f!=='all' && p.dataset.cat!==f));
+  }));
+</script>
+
+</body>
+</html>

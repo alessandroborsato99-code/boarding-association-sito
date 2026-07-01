@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Association — Contatti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0B0D12;--ink2:#12151C;--cool:#E8EFFF;--muted:#6E7788;--acc:#8FB4E0;--line-d:rgba(232,239,255,.14);--maxw:1280px}
+  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+  body{font-family:'Archivo',system-ui,sans-serif;background:var(--ink);color:var(--cool);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none} .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px}
+  .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  header{position:sticky;top:0;z-index:100;background:rgba(11,13,18,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px} .nav .lg{display:flex;align-items:center;gap:22px} .nav .lg img{height:38px} .nav .lg img.wm{height:22px}
+  .nav a.back{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.85} .nav a.back:hover{opacity:1;color:var(--acc)}
+  .hero{padding:78px 0 30px} .hero .lbl{color:var(--acc)}
+  .hero h1{font-weight:200;text-transform:uppercase;font-size:clamp(44px,8.5vw,110px);line-height:.92;letter-spacing:-.01em;margin:14px 0 18px;color:#fff}
+  .hero p{max-width:56ch;font-size:16.5px;color:rgba(232,239,255,.8)} .hero a.mail{color:var(--acc);border-bottom:1px solid var(--acc)}
+  .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;padding:30px 0 80px;align-items:start}
+  /* form */
+  form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{margin-bottom:16px} .field.full{grid-column:1/-1}
+  label{display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  input,textarea{width:100%;background:var(--ink2);border:1px solid var(--line-d);border-radius:6px;padding:13px 14px;color:var(--cool);font-family:'Archivo',sans-serif;font-size:15px;transition:.2s}
+  input:focus,textarea:focus{outline:none;border-color:var(--acc)}
+  textarea{min-height:130px;resize:vertical}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin:4px 0 18px}
+  .check input{width:auto}
+  button.send{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border-radius:4px;background:var(--cool);color:var(--ink);border:none;cursor:pointer;transition:.2s} button.send:hover{background:#fff;transform:translateY(-2px)}
+  .fnote{font-size:12px;color:var(--muted);margin-top:14px}
+  /* info */
+  .info .block{border-top:1px solid var(--line-d);padding:20px 0}
+  .info .block:first-child{border-top:none;padding-top:0}
+  .info .k{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+  .info p{font-size:16px;color:rgba(232,239,255,.86);margin-bottom:3px}
+  .info a:hover{color:var(--acc)}
+  .map{margin-top:8px;border:1px solid var(--line-d);border-radius:10px;overflow:hidden;aspect-ratio:16/10}
+  .map iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+  /* light contact section */
+  section.light{background:var(--cool);color:var(--ink)}
+  section.light label{color:#5A6474}
+  section.light input,section.light textarea{background:#fff;border-color:rgba(11,13,18,.14);color:var(--ink)}
+  section.light input:focus,section.light textarea:focus{border-color:#1F9BE8}
+  section.light .check{color:#5A6474}
+  section.light button.send{background:var(--ink);color:var(--cool)}
+  section.light button.send:hover{background:#000}
+  section.light .fnote{color:#5A6474}
+  section.light .info .block{border-top-color:rgba(11,13,18,.12)}
+  section.light .info .k{color:#1F9BE8}
+  section.light .info p{color:#2B3745}
+  section.light .info a:hover{color:#1F9BE8}
+  section.light .map{border-color:rgba(11,13,18,.12)}
+  footer{background:var(--cool);color:var(--ink);padding:80px 0 34px;border-top:1px solid rgba(11,13,18,.1)}
+  footer .wrap{display:block}
+  .brands{display:flex;align-items:center;gap:50px;flex-wrap:wrap;padding-bottom:40px;margin-bottom:46px;border-bottom:1px solid rgba(11,13,18,.12)}
+  .brands img{height:46px;width:auto;display:block} .brands img.crest{height:62px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;padding-bottom:52px;border-bottom:1px solid rgba(11,13,18,.12)}
+  .foot-top h2{font-weight:200;text-transform:uppercase;font-size:clamp(34px,4.6vw,74px);line-height:.9;color:var(--ink)} .foot-top h2 b{font-weight:600}
+  .fcol .l{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6474;margin-bottom:14px}
+  .fcol p{color:#2B3745;font-size:15px;margin-bottom:5px} .fcol a{border-bottom:1px solid transparent;transition:.2s} .fcol a:hover{border-color:var(--ink)}
+  .social{display:flex;gap:18px;margin-top:12px} .social a{color:var(--ink);transition:.2s;display:flex} .social a:hover{color:var(--acc)} .social svg{width:22px;height:22px}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:#5A6474;flex-wrap:wrap;gap:8px}
+  @media(max-width:860px){.foot-top{grid-template-columns:1fr}}
+  @media(max-width:860px){.grid{grid-template-columns:1fr;gap:34px}form .row{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><div class="wrap nav">
+  <div class="lg"><a href="Home-BoardAssociation.html"><img src="assets/logo-white.png" alt="Board Association"></a><a href="https://www.detour.it/it" target="_blank" rel="noopener"><img class="wm" src="assets/detour_logo.webp" alt="Detour"></a><a href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener"><img class="wm" src="assets/slide_logo.webp" alt="Slide"></a></div>
+  <a class="back" href="Home-BoardAssociation.html">← Home</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="lbl">Contatti</div>
+  <h1>Hai bisogno<br>di info?</h1>
+  <p>Chiamaci pure ai contatti telefonici che trovi qui sotto, passa in negozio oppure scrivici a <a class="mail" href="mailto:info@board-association.it">info@board-association.it</a>.</p>
+</div></section>
+
+<section class="light" style="padding:20px 0 70px"><div class="wrap grid">
+  <form onsubmit="return false">
+    <div class="row">
+      <div class="field"><label>Nome e cognome</label><input type="text" placeholder="Il tuo nome"></div>
+      <div class="field"><label>Telefono</label><input type="tel" placeholder="+39 ..."></div>
+    </div>
+    <div class="field full"><label>Email</label><input type="email" placeholder="nome@email.it"></div>
+    <div class="field full"><label>Oggetto</label><input type="text" placeholder="Corsi, noleggio, uscite..."></div>
+    <div class="field full"><label>Messaggio</label><textarea placeholder="Scrivici come possiamo aiutarti"></textarea></div>
+    <label class="check"><input type="checkbox"> Ho letto e accetto la privacy policy per il trattamento dei dati.</label>
+    <button class="send" type="submit">Invia messaggio →</button>
+    <div class="fnote">Ti rispondiamo il prima possibile negli orari di apertura.</div>
+  </form>
+
+  <div class="info">
+    <div class="block">
+      <div class="k">Dove siamo</div>
+      <p>Via Goffredo Mameli, 5/a</p>
+      <p>37126 Verona</p>
+      <div class="map"><iframe loading="lazy" src="https://www.google.com/maps?q=Via%20Goffredo%20Mameli%205a%2037126%20Verona&output=embed"></iframe></div>
+    </div>
+    <div class="block">
+      <div class="k">Orari</div>
+      <p>Lun–Sab · 09:30–12:30 / 15:30–19:30</p>
+      <p>Domenica · 10:30–12:30 / 15:30–19:00</p>
+    </div>
+    <div class="block">
+      <div class="k">Contatti diretti</div>
+      <p><a href="tel:+390458349981">+39 045 8349981</a></p>
+      <p><a href="mailto:info@board-association.it">info@board-association.it</a></p>
+      <p><a href="https://instagram.com/detour_slide">Instagram →</a></p>
+    </div>
+  </div>
+</div></section>
+
+<footer id="contatti">
+  <div class="wrap">
+    <div class="brands">
+      <a href="https://www.detour.it/it" target="_blank" rel="noopener"><img src="assets/detour-black.png" alt="Detour"></a>
+      <a href="https://www.detour.it/it/negozi/slide" target="_blank" rel="noopener"><img src="assets/slide-black.png" alt="Slide"></a>
+      <img class="crest" src="assets/board-noverona-black.png" alt="Board Association">
+    </div>
+    <div class="foot-top">
+      <div><h2>Inarrestabile passione, <b>stagione dopo stagione.</b></h2></div>
+      <div class="fcol">
+        <div class="l">Detour · Verona</div>
+        <p>Via Goffredo Mameli, 5/a – 5/d</p><p>37126 Verona</p>
+        <p style="margin-top:12px">Lun–Sab · 09:30–12:30 / 15:30–19:30</p><p>Dom · 10:30–12:30 / 15:30–19:00</p>
+        <p style="margin-top:12px"><a href="tel:+390458349981">+39 045 8349981</a></p>
+        <div class="l" style="margin-top:26px">Tessere</div><p>FISI + Club € 60 · Club € 25</p>
+      </div>
+      <div class="fcol">
+        <div class="l">Slide · Verona</div>
+        <p>Via Porta S. Zeno, 19</p><p>37123 Verona</p>
+        <p style="margin-top:12px">Lun–Sab · 10:00–19:00</p><p>Dom · 10:30–12:30 / 16:00–19:00</p>
+        <p style="margin-top:12px"><a href="tel:+390459299971">+39 045 9299971</a></p>
+        <div class="l" style="margin-top:26px">Seguici</div>
+        <div class="social">
+          <a href="https://www.facebook.com/detourslide" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.29-.04-1.28-.13-2.43-.13-2.4 0-4.05 1.47-4.05 4.16v2.32H7.8V13h2.72v8h2.98z"/></svg></a>
+          <a href="https://www.instagram.com/detour_slide/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.9" cy="7.1" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>BOARD ASSOCIATION — EST. 1988 · VERONA</span><span>© 2026</span></div>
+  </div>
+</footer>
+</body></html>
