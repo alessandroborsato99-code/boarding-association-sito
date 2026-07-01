@@ -195,13 +195,13 @@
 </script>
 
 <style>
-  .foot-news{margin-top:30px}
-  .foot-news .nl-int{color:#33404F;font-size:15px;margin:6px 0 14px;max-width:34ch}
-  .foot-news .nl{display:flex;gap:10px;max-width:420px;flex-wrap:wrap}
-  .foot-news .nl input{flex:1 1 200px;padding:12px 14px;border:1px solid rgba(11,13,18,.22);border-radius:3px;background:#fff;color:#0B0D12;font-family:'Archivo',sans-serif;font-size:14px}
+  .foot-news{margin-top:30px;max-width:460px}
+  .foot-news .nl-int{color:#33404F;font-size:15px;margin:6px 0 14px}
+  .foot-news .nl{display:flex;gap:10px;flex-wrap:nowrap}
+  .foot-news .nl input{flex:1 1 auto;min-width:0;padding:12px 14px;border:1px solid rgba(11,13,18,.22);border-radius:3px;background:#fff;color:#0B0D12;font-family:'Archivo',sans-serif;font-size:14px}
   .foot-news .nl input:focus{outline:none;border-color:#0B0D12}
   .foot-news .nl input.err{border-color:#c0392b}
-  .foot-news .nl button{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:12px 20px;background:#0B0D12;color:#E8EFFF;border:none;border-radius:3px;cursor:pointer;transition:.2s}
+  .foot-news .nl button{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;padding:12px 20px;background:#0B0D12;color:#E8EFFF;border:none;border-radius:3px;cursor:pointer;transition:.2s}
   .foot-news .nl button:hover{transform:translateY(-2px)}
   .foot-news .nl-ok{margin-top:12px;font-family:'Space Mono',monospace;font-size:12px;color:#1F9BE8}
   .foot-legal a{border-bottom:1px solid transparent;transition:.2s}
