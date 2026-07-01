@@ -88,6 +88,11 @@
   .manifesto h2 b{font-weight:600}
   .manifesto .body{max-width:52ch;font-size:16px;color:#33404F}
   .manifesto .body p{margin-bottom:14px}
+  .manifesto .slider .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;z-index:1}
+  .manifesto .slider .slide.on{opacity:1;z-index:2}
+  .manifesto .slider .dots{position:absolute;left:14px;bottom:14px;display:flex;gap:7px;z-index:4}
+  .manifesto .slider .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+  .manifesto .slider .dots i.on{background:#fff;width:20px;border-radius:4px}
 
   /* ============ FEATURE ROWS ============ */
   .feat{background:var(--ink);padding:0}
@@ -266,7 +271,13 @@
   <div class="wrap grid">
     <div class="rev">
       <div class="lbl">(01) Chi siamo</div>
-      <div class="mfoto mwrap-img grade"><img src="assets/store-detour.jpg" alt="Il negozio a Verona"></div>
+      <div class="mfoto mwrap-img grade slider" data-slider>
+        <img class="slide on" src="assets/store-detour.jpg" alt="Detour Boarding Store, Verona">
+        <img class="slide" src="assets/store-slide.jpg" alt="Slide, Verona">
+        <img class="slide" src="assets/shop-u.jpg" alt="Interno del negozio">
+        <img class="slide" src="assets/ba/copertina.jpg" alt="La community Board Association">
+        <div class="dots"></div>
+      </div>
     </div>
     <div class="rev d1">
       <h2>Il riferimento dello snowboard a <b>Verona, dal 1988.</b> Non un maestro qualsiasi, non una scuola anonima: un gruppo radicato che vive la neve insieme.</h2>
@@ -468,6 +479,15 @@
     const f=b.dataset.f;
     document.querySelectorAll('.post').forEach(p=>p.classList.toggle('hidden', f!=='all' && p.dataset.cat!==f));
   }));
+  document.querySelectorAll('[data-slider]').forEach(sl=>{
+    const slides=[...sl.querySelectorAll('.slide')], dots=sl.querySelector('.dots');
+    let i=0, t;
+    slides.forEach((_,k)=>{const d=document.createElement('i');if(!k)d.classList.add('on');d.addEventListener('click',()=>go(k,true));dots.appendChild(d);});
+    const dd=[...dots.children];
+    function go(n,manual){slides[i].classList.remove('on');dd[i].classList.remove('on');i=(n+slides.length)%slides.length;slides[i].classList.add('on');dd[i].classList.add('on');if(manual)reset();}
+    function reset(){clearInterval(t);t=setInterval(()=>go(i+1),4500);}
+    reset();
+  });
 </script>
 
 </body>
