@@ -19,23 +19,29 @@
 <meta name="description" content="Il riferimento dello snowboard a Verona dal 1988. La nostra storia, i negozi Detour e Slide.">
 <!-- /OG -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Archivo:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--ink:#0B0D12;--ink2:#12151C;--cool:#E8EFFF;--muted:#6E7788;--acc:#8FB4E0;--blue:#1F9BE8;--line-d:rgba(232,239,255,.14);--maxw:1280px}
   *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
-  body{font-family:'Archivo',system-ui,sans-serif;background:var(--ink);color:var(--cool);line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{font-family:'Archivo',system-ui,sans-serif;background:var(--cool);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none} .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px}
   .lbl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   header{position:sticky;top:0;z-index:100;background:rgba(11,13,18,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px} .nav .lg{display:flex;align-items:center;gap:22px} .nav .lg img{height:38px} .nav .lg img.wm{height:22px}
   .nav a.back{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.85} .nav a.back:hover{opacity:1;color:var(--acc)}
-  .hero{padding:80px 0 46px;border-bottom:1px solid var(--line-d)} .hero .lbl{color:var(--acc)}
-  .hero h1{font-weight:200;text-transform:uppercase;font-size:clamp(46px,9vw,120px);line-height:.92;letter-spacing:-.01em;margin:14px 0 20px;color:#fff}
-  .hero p{max-width:60ch;font-size:16.5px;color:rgba(232,239,255,.8)}
-  section.blk{padding:80px 0;border-bottom:1px solid var(--line-d)}
+  .hero{padding:80px 0 46px;border-bottom:1px solid rgba(11,13,18,.12)} .hero .lbl{color:#1F9BE8}
+  .hero h1{font-weight:200;text-transform:uppercase;font-size:clamp(46px,9vw,120px);line-height:.92;letter-spacing:-.01em;margin:14px 0 20px;color:var(--ink)}
+  .hero p{max-width:60ch;font-size:16.5px;color:#33404F}
+  section.blk{padding:80px 0;border-bottom:1px solid rgba(11,13,18,.12)}
   .blk.light{background:var(--cool);color:var(--ink);border-bottom-color:rgba(11,13,18,.12)}
   .ey{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:22px}
   .blk.light .ey{color:var(--blue)}
+  .blk.light .disc span{border-color:rgba(11,13,18,.16);color:var(--ink)}
+  .blk.light .lead{color:#33404F}
+  .blk.light .store{background:#fff;border-color:rgba(11,13,18,.1)}
+  .blk.light .store h3{color:var(--ink)}
+  .blk.light .store p{color:#48566a}
+  .blk.light .store .go{color:#1F9BE8}
   .manifesto-txt{font-weight:200;text-transform:none;font-size:clamp(24px,3.2vw,42px);line-height:1.28;letter-spacing:-.01em;max-width:20ch}
   .statement{font-weight:200;font-size:clamp(22px,2.6vw,34px);line-height:1.35;max-width:40ch;color:var(--ink)}
   .statement b{font-weight:600}
@@ -71,7 +77,7 @@
   @media(max-width:860px){.words,.stores,.foot-top{grid-template-columns:1fr}}
 
   /* display font */
-  h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.01em}
+  h1,h2,h3{font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.01em}
 </style></head>
 <body>
 <header><div class="wrap nav">
@@ -93,9 +99,9 @@
   </div>
 </div></section>
 
-<section class="blk"><div class="wrap">
+<section class="blk light"><div class="wrap">
   <div class="ey rev">(02) Le nostre tavole</div>
-  <h2 class="big rev d1" style="color:#fff">Una tavola, in ogni stagione.</h2>
+  <h2 class="big rev d1">Una tavola, in ogni stagione.</h2>
   <div class="disc rev d1">
     <span>Snowboard</span><span>Sci</span><span>Skate</span><span>Surf</span><span>Wake</span>
   </div>
@@ -113,9 +119,9 @@
   </div>
 </div></section>
 
-<section class="blk"><div class="wrap">
+<section class="blk light"><div class="wrap">
   <div class="ey rev">(04) I negozi</div>
-  <h2 class="big rev d1" style="color:#fff">Due store a Verona.</h2>
+  <h2 class="big rev d1">Due store a Verona.</h2>
   <div class="stores rev d1">
     <a class="store" href="https://www.detour.it/it" target="_blank" rel="noopener">
       <div class="ph"><img src="assets/store-detour.jpg" alt="Detour"></div>
