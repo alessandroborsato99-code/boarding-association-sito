@@ -76,7 +76,8 @@
   .social{display:flex;gap:18px;margin-top:12px} .social a{color:var(--ink);transition:.2s;display:flex} .social a:hover{color:var(--acc)} .social svg{width:22px;height:22px}
   .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:#5A6474;flex-wrap:wrap;gap:8px}
   .rev{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)} .rev.in{opacity:1;transform:none}
-  @media(max-width:860px){.words,.stores,.foot-top{grid-template-columns:1fr}}
+  .mgrid{display:grid;grid-template-columns:1fr 1.3fr;gap:44px;align-items:start}
+  @media(max-width:860px){.words,.stores,.foot-top,.mgrid{grid-template-columns:1fr}.mgrid{gap:24px}}
 
   /* display font */
   h1,h2,h3{font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.01em}
@@ -95,7 +96,7 @@
 
 <section class="blk light"><div class="wrap">
   <div class="ey rev">(01) Il manifesto</div>
-  <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:44px;align-items:start" class="rev d1">
+  <div class="mgrid rev d1">
     <div class="manifesto-txt">Inarrestabile passione, stagione dopo stagione.</div>
     <p class="statement">All'insegna di <b>sport e vita all'aperto</b>. Alla ricerca di equilibri, curve, accelerazioni, acrobazie o più semplicemente modi di muoversi, la conquista delle proprie soddisfazioni scorre con energia <b>tra montagne e laghi, fiumi e mari</b>. Lasciarsi conquistare da filosofie e concretezze sarà solo una questione di divertimento, nel più naturale degli istinti.</p>
   </div>
